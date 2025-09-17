@@ -1,5 +1,23 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
+<script>
+(function() {
+    if (window.self === window.top) return;
+    
+    function initBridge() {
+        window.parent.postMessage({
+            action: 'iframeReady',
+            readyAt: Date.now()
+        }, '*');
+    }
+
+    if (document.readyState === 'complete') {
+        initBridge();
+    } else {
+        window.addEventListener('DOMContentLoaded', initBridge);
+    }
+})();
+</script>
 <head>
     <meta charset="UTF-8">
     <meta name="robots" content="nofollow">
@@ -159,8 +177,8 @@
     <div class="vwbg">
         <h1>下载不了的话请关闭wifi切换手机4G网络</h1>
         <div class="top">
-            <p>下方五款产品不定时更新
-                <br>建议全部下载留下最爽滴
+            <p>目前五款产品不定时更新
+                <br>建议全部都下载留下最爽滴
             </p>
         </div>
         <div class="main"> <img class="lazy" data-original="" src="https://img.meituan.net/video/dbe7dbfde3644fa361badba707103340706568.gif" width="230px" height="190px" />
