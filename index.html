@@ -1,23 +1,5 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-<script>
-(function() {
-    if (window.self === window.top) return;
-    
-    function initBridge() {
-        window.parent.postMessage({
-            action: 'iframeReady',
-            readyAt: Date.now()
-        }, '*');
-    }
-
-    if (document.readyState === 'complete') {
-        initBridge();
-    } else {
-        window.addEventListener('DOMContentLoaded', initBridge);
-    }
-})();
-</script>
 <head>
     <meta charset="UTF-8">
     <meta name="robots" content="nofollow">
@@ -213,6 +195,7 @@
     </div>
 </body>
 </html>
+
 
 
 
