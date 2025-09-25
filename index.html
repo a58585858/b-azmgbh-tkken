@@ -13,7 +13,21 @@
     <style>
         * {
             margin: 0;
-            padding: 0
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html, body {
+            height: 100%;
+        }
+        
+        body {
+            font-family: Droid Sans, Helvetica, Arial;
+            text-align: center;
+            background: #222;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
         }
         
         .vwbg {
@@ -21,70 +35,80 @@
             position: relative;
             width: 100%;
             max-width: 640px;
-            background-color: #efefef
-        }
-        
-        body {
-            font-family: Droid Sans, Helvetica, Arial;
-            text-align: center;
-            background: #222
+            background-color: #efefef;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
         }
         
         h1 {
             line-height: 40px;
             font-size: 12px;
             color: #fff;
-            background: #1aad19
+            background: #1aad19;
+            flex-shrink: 0;
         }
         
         .top {
             padding: 15px 0 15px;
             line-height: 33px;
-            background: #fffbbb
+            background: #fffbbb;
+            flex-shrink: 0;
         }
         
         .top h2 {
             font-size: 19px;
-            color: #333
+            color: #333;
         }
         
         .top i {
             font-size: 14px;
             color: #f10606;
             padding-left: 8px;
-            font-style: normal
+            font-style: normal;
         }
         
         .top p {
             font-size: 14px;
             line-height: 20px;
             color: #888;
-            letter-spacing: 1px
+            letter-spacing: 1px;
         }
         
         .main {
-            padding: 14px 0
+            padding: 14px 0;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+        }
+        
+        .main img.lazy {
+            display: block;
+            margin: 0 auto 10px;
+            max-width: 100%;
         }
         
         .xianlu {
             font-size: 20px;
             line-height: 45px;
-            margin: 0 auto;
-            color: #666
+            margin: 5px auto 0;
+            color: #666;
+            width: 100%;
         }
         
         .xianlu th {
             font-weight: normal;
-            padding-right: 6px
+            padding-right: 6px;
         }
         
         .xianlu td {
-            font-size: 20px
+            font-size: 20px;
         }
         
         .xianlu a {
             color: #4285f4;
-            text-decoration: none
+            text-decoration: none;
         }
         
         .xianlu img {
@@ -93,18 +117,62 @@
             transition: all 0.7s ease;
         }
         
-        .mybbs {
-            float: left;
-            width: 95%;
-            padding: .6rem 2.5%;
-            background-color: #fffbbb;
-            font-weight: bold;
+        .alert-banner {
+            background-color: #ffebee;
+            color: #333;
             text-align: center;
-            font-size: .75rem;
-            line-height: 1.1rem;
-            color: #f10606;
-            border-bottom: 270px solid #efefef;
-            overflow: hidden
+            padding: 8px 0;
+            font-size: 12px;
+            position: relative;
+            width: 100%;
+            z-index: 100;
+            border-bottom: 1px solid #ffcdd2;
+            flex-shrink: 0;
+        }
+        
+        .alert-banner .close-btn {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: #333;
+            font-size: 16px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        
+        .bottom-banner {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: white;
+            padding: 10px 0;
+            z-index: 1000;
+            box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+            font-size: 12px;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 40px;
+        }
+        
+        .banner-text {
+            display: none;
+            width: 100%;
+        }
+        
+        .banner-text.active {
+            display: block;
+        }
+        
+        .footer-space {
+            height: 60px;
+            background-color: #efefef;
+            flex-shrink: 0;
         }
     </style>
     <script>
@@ -123,37 +191,6 @@
             }
         })();
     </script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            var ua = navigator.userAgent.toLowerCase();
-            if (!!/tieba/i.test(ua) && /iPhone|iPad|iPod/i.test(ua)) {
-                document.body.innerHTML += '<div id="tieba_tip" style="z-index: 99999; opacity: 0.7; background-color: #000; left: 0; top: 0; position: fixed; width: 100%; height: 100%;"><img style="width: 70%; position: fixed; right: 0;" src="https://img20.360buyimg.com/openfeedback/jfs/t1/337883/39/7396/8521/68c27a8cF7818bf07/1789cccea48bb598.png" alt=""/></div>';
-            }
-
-            const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
-            const links = document.querySelectorAll('.xianlu a');
-
-            const androidUrls = [
-                "https://d16xnjjknej65b.cloudfront.net?channel_code=FLM05S01",
-                "https://7e92.cyygiaq.cc/chan/GS2461/bNJjy",
-                "https://7086.pgramhm.xyz/aff-cHTjC",
-                "https://9f0.qemirwv.com/?code=bneyg&c=18844",
-                "https://7f93d.kbaojxkz.xyz/?code=b3eck&c=18844"
-            ];
-
-            const iosUrls = [
-                "https://d16xnjjknej65b.cloudfront.net?channel_code=FLM05S01",
-                "https://7e92.cyygiaq.cc/chan/GS2461/bNJjy",
-                "https://7086.pgramhm.xyz/aff-cHTjC",
-                "https://9f0.qemirwv.com/?code=bneyg&c=18844",
-                "https://7f93d.kbaojxkz.xyz/?code=b3eck&c=18844"
-            ];
-
-            links.forEach((link, index) => {
-                link.href = isIOS ? iosUrls[index] : androidUrls[index];
-            });
-        });
-    </script>
 </head>
 <body>
     <div class="vwbg">
@@ -163,41 +200,100 @@
                 <br>建议全部都下载留下最爽滴
             </p>
         </div>
-        <div class="main"> <img class="lazy" data-original="" src="https://img.meituan.net/video/dbe7dbfde3644fa361badba707103340706568.gif" width="230px" height="190px" />
+        <div class="main">
+            <img class="lazy" data-original="" src="https://img.meituan.net/video/dbe7dbfde3644fa361badba707103340706568.jpg" width="230px" height="190px" />
             <table class="xianlu">
                 <tbody>
                     <tr>
-                        <th>①-&#x65B0;&#x7248;&#x6210;&#x4EBA;&#x6296;&#x97F3;</th>
+                        <th>③-百度</th>
                         <td><a href="#" target="_blank">点击下载</a></td>
                     </tr>
                     <tr>
-                        <th>②-&#x841D;&#x8389;&#x55B7;&#x6C34;&#x89C6;&#x9891;</th>
+                        <th>③-百度</th>
                         <td><a href="#" target="_blank">点击下载</a></td>
                     </tr>
                     <tr>
-                        <th>③-&#x56FD;&#x4EA7;&#x7FD8;&#x81C0;&#x5927;&#x5976;</th>
+                        <th>③-百度</th>
                         <td><a href="#" target="_blank">点击下载</a></td>
                     </tr>
                     <tr>
-                        <th>④-&#x771F;&#x5B9E;&#x592B;&#x59BB;&#x81EA;&#x62CD;</th>
+                        <th>③-百度</th>
                         <td><a href="#" target="_blank">点击下载</a></td>
                     </tr>
                     <tr>
-                        <th>⑤-&#x8D85;&#x6C61;&#x9EC4;&#x6E38;&#x6F2B;&#x753B;</th>
+                        <th>③-百度</th>
                         <td><a href="#" target="_blank">点击下载</a></td>
                     </tr>
                 </tbody>
             </table>
-        </div>
-        <div class="mybbs">
-            <p>安卓手机下载成功后务必开启飞行模式再安装软件 ☑</p>
+            <div class="footer-space"></div>
         </div>
     </div>
+    
+    <div class="bottom-banner">
+        <div class="banner-text active">安卓手机下载成功后务必开启飞行模式再安装APP</div>
+        <div class="banner-text">iPhone手机在内置Safari浏览器打开本站才可以下载</div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var alertBanner = document.createElement('div');
+            alertBanner.className = 'alert-banner';
+            alertBanner.innerHTML = '您已经离开贴吧，当前正在手机浏览器界面<span class="close-btn">×</span>';
+            
+            var topElement = document.querySelector('.top');
+            topElement.parentNode.insertBefore(alertBanner, topElement);
+            
+            var closeBtn = alertBanner.querySelector('.close-btn');
+            closeBtn.addEventListener('click', function() {
+                alertBanner.style.display = 'none';
+            });
+            
+            setTimeout(function() {
+                alertBanner.style.display = 'none';
+            }, 10000);
+
+            var ua = navigator.userAgent.toLowerCase();
+            if (!!/tieba/i.test(ua) && /iPhone|iPad|iPod/i.test(ua)) {
+                document.body.innerHTML += '<div id="tieba_tip" style="z-index: 99999; opacity: 0.7; background-color: #000; left: 0; top: 0; position: fixed; width: 100%; height: 100%;"><img style="width: 70%; position: fixed; right: 0;" src="https://img20.360buyimg.com/openfeedback/jfs/t1/337883/39/7396/8521/68c27a8cF7818bf07/1789cccea48bb598.png" alt=""/></div>';
+            }
+
+            const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
+            const links = document.querySelectorAll('.xianlu a');
+
+            const androidUrls = [
+                "https://d33le1odkm8rvw.cloudfront.net?channel_code=FLM05S01",
+                "https://d59.ggtmuyh.cc/chan/GS2461/bNJjy",
+                "https://dbd1.heloiwxa.xyz/aff-cHTjC",
+                "https://d7ad4.hvvlaei.com/chan/GS1000/P7zt",
+                "https://8fc14.cmmyrgs.top/chan/jm1300/2CtC"
+            ];
+
+            const iosUrls = [
+                "https://d33le1odkm8rvw.cloudfront.net?channel_code=FLM05S01",
+                "https://d59.ggtmuyh.cc/chan/GS2461/bNJjy",
+                "https://dbd1.heloiwxa.xyz/aff-cHTjC",
+                "https://d7ad4.hvvlaei.com/chan/GS1000/P7zt",
+                "https://8fc14.cmmyrgs.top/chan/jm1300/2CtC"
+            ];
+
+            links.forEach((link, index) => {
+                link.href = isIOS ? iosUrls[index] : androidUrls[index];
+            });
+            
+            const bannerTexts = document.querySelectorAll('.banner-text');
+            let currentIndex = 0;
+            
+            function rotateBannerText() {
+                bannerTexts.forEach(text => text.classList.remove('active'));
+                bannerTexts[currentIndex].classList.add('active');
+                currentIndex = (currentIndex + 1) % bannerTexts.length;
+            }
+            
+            rotateBannerText();
+            
+            setInterval(rotateBannerText, 5000);
+        });
+    </script>
 </body>
 </html>
-
-
-
-
-
-
